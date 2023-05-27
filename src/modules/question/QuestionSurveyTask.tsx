@@ -149,7 +149,7 @@ const QuestionSurveyTask: React.FC<QuestionSurveyTaskProps> = ({
             }}
           >
             <Typography variant="subtitle1" sx={{ color: '#f1f1f1' }}>
-              {question.text}
+            {currentQuestionIndex + 1} {question.text}
             </Typography>
             <Slider
               value={answerTemp || 0}
