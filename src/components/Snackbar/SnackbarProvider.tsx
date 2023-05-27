@@ -7,6 +7,7 @@ import { AlertType } from "../../interfaces/common.interfaces";
 
 type SnackbarStateType = {
   open: boolean;
+  severity?: AlertType["severity"],
   message?: string;
   closable?: boolean;
   detail?: string | React.ReactNode;

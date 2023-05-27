@@ -11,6 +11,7 @@ import {
 
 import useAuthFormValidation from '../../hooks/useAuthFormValidation'
 import useLocalStorage from '../../hooks/useLocalStorage'
+import useSnackbar from '../../components/Snackbar/useSnackbar'
 import { loginUser } from '../../services/authService'
 
 export type FormValuesLogin = {
@@ -20,6 +21,7 @@ export type FormValuesLogin = {
 
 const LoginForm = () => {
   const navigate = useNavigate()
+  const snackbar = useSnackbar()
   const [user, setUser] = useLocalStorage('user', null)
 
   const { formValues, errors, handleChange, validateForm } =
@@ -36,6 +38,13 @@ const LoginForm = () => {
         navigate('/')
       }
     },
+    onError: (error: any) => {
+      snackbar.show(
+        error?.response?.data?.error ?? 'Something went wrong',
+        'error',
+        true
+      )
+    }
   })
 
   const handleSubmit = (e: FormEvent) => {

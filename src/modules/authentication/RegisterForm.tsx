@@ -49,9 +49,9 @@ const RegisterForm: React.FC<RegisterFormProps> = ({
         onFinishRegister();
       }
     },
-    onError: (error) => {
+    onError: (error: any) => {
       snackbar.show(
-        error?.response.data.error,
+        error?.response?.data?.error ?? 'Something went wrong',
         'error',
         true
       )

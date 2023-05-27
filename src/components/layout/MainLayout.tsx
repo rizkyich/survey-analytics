@@ -51,6 +51,10 @@ const DrawerContainer = styled(Drawer)(({ theme }) => ({
     width: 250,
     flexShrink: 0,
   },
+  '& > .MuiPaper-root': {
+    width: 250,
+    paddingTop: theme.spacing(10)
+  }
 }))
 
 const MenuButton = styled(IconButton)(({ theme }) => ({

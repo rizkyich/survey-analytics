@@ -26,6 +26,13 @@ const SurveyAddPage = () => {
         navigate('/survey/' + survey.id)
       }
     },
+    onError: (error: any) => {
+      snackbar.show(
+        error?.response?.data?.error ?? 'Something went wrong',
+        'error',
+        true
+      )
+    }
   })
 
   const handleSubmitSurvey = (data: SurveyType) => {

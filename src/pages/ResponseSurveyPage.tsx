@@ -8,6 +8,7 @@ import { styled } from '@mui/system'
 import QuestionSurveyTask from '../modules/question/QuestionSurveyTask'
 import ResponseStart from '../modules/response/ResponseStart'
 
+import useSnackbar from '../components/Snackbar/useSnackbar'
 import { getSurveyBySlugId } from '../services/surveyService'
 import { saveResponses } from '../services/responseService'
 
@@ -46,6 +47,7 @@ const Content = styled('div')(({ theme }) => ({
 
 const ResponseSurveyPage = () => {
   const { surveySlug } = useParams()
+  const snackbar = useSnackbar()
   const [searchParams] = useSearchParams()
 
   const [respondentName, setRespondentName] = useState<string>('')
@@ -66,6 +68,13 @@ const ResponseSurveyPage = () => {
         setSaveCompleted(true)
       }
     },
+    onError: (error: any) => {
+      snackbar.show(
+        error?.response?.data?.error ?? 'Something went wrong',
+        'error',
+        true
+      )
+    }
   })
 
   const handleFinishQuestion = (responseArray: ResponseSubmitType[]) => {
@@ -130,7 +139,7 @@ const ResponseSurveyPage = () => {
           />
         ) : (
           <QuestionSurveyTask
-            questions={survey.questions}
+            questions={survey.questions ?? []}
             onFinishQuestion={handleFinishQuestion}
           />
         )}

@@ -33,6 +33,13 @@ const SurveyEditPage = () => {
         navigate('/')
       }
     },
+    onError: (error: any) => {
+      snackbar.show(
+        error?.response?.data?.error ?? 'Something went wrong',
+        'error',
+        true
+      )
+    }
   })
 
   const handleEditSurvey = (data: SurveyType) => {
