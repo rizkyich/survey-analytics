@@ -1,4 +1,7 @@
+import axios from 'axios'
 import apiClient from './apiClient'
+
+import { BASE_URL } from '../config'
 
 import { SurveyType } from '../interfaces/survey.interfaces'
 
@@ -68,8 +71,8 @@ export const getSurveyById = async (surveyId: string) => {
 }
 
 export const getSurveyBySlugId = async (slug: string, surveyId: string) => {
-  const { data } = await apiClient({
-    url: `/surveys/${slug}/${surveyId}`,
+  const { data } = await axios({
+    url: `${BASE_URL}/surveys/${slug}/${surveyId}`,
     method: 'GET',
   })
 

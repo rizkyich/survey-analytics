@@ -42,7 +42,7 @@ const BaseSearchBar: React.FC<BaseSearchBarProps> = ({
 
   useEffect(() => {
     onInputSearch(debounceValue)
-  }, [debounceValue])
+  }, [debounceValue, onInputSearch])
 
   return (
     <StyledSearchBar>

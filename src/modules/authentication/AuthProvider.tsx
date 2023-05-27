@@ -1,11 +1,7 @@
 import { createContext, useContext, useMemo, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useMutation } from 'react-query'
 
 import useLocalStorage from '../../hooks/useLocalStorage'
-import { loginUser } from '../../services/authService'
-
-import { FormValuesLogin } from './LoginForm'
 
 interface AuthContextProps {
   user: any
