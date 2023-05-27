@@ -31,6 +31,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, [value.user, navigate])
 
+  if (!value.user) {
+    return <>Loading...</>
+  }
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 

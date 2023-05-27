@@ -18,6 +18,7 @@ const LoginPage: React.FC = () => {
   const [isLoginForm, setIsLoginForm] = useState(true)
 
   const handleToggleForm = () => {
+    console.log('masuk')
     setIsLoginForm((prevState) => !prevState)
   }
 
@@ -35,7 +36,7 @@ const LoginPage: React.FC = () => {
         <Paper elevation={3} sx={{ p: 4 }}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
-              {isLoginForm ? <LoginForm /> : <RegisterForm />}
+              {isLoginForm ? <LoginForm /> : <RegisterForm onFinishRegister={handleToggleForm}/>}
             </Grid>
             <Grid item xs={12}>
               <Typography variant="subtitle1" align="center">

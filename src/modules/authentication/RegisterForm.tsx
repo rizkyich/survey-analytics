@@ -10,6 +10,8 @@ import { useMutation } from 'react-query'
 
 import { registerUser } from '../../services/authService'
 
+import useSnackbar from '../../components/Snackbar/useSnackbar'
+
 import useAuthFormValidation from '../../hooks/useAuthFormValidation'
 
 export type FormValuesRegister = {
@@ -18,7 +20,15 @@ export type FormValuesRegister = {
   password: string
 }
 
-const RegisterForm = () => {
+interface RegisterFormProps {
+  onFinishRegister: () => void;
+}
+
+const RegisterForm: React.FC<RegisterFormProps> = ({
+  onFinishRegister,
+}) => {
+  const snackbar = useSnackbar()
+
   const { formValues, errors, handleChange, validateForm } =
     useAuthFormValidation({
       username: (value) => (value ? null : 'Username is required'),
@@ -30,10 +40,23 @@ const RegisterForm = () => {
     mutationFn: (data: FormValuesRegister) => registerUser(data),
     onSuccess: (responseDataToken) => {
       if (responseDataToken) {
-        console.log('sukses')
+        snackbar.show(
+          'Success Register',
+          'success',
+          true
+        )
+
+        onFinishRegister();
       }
     },
-  })
+    onError: (error) => {
+      snackbar.show(
+        error?.response.data.error,
+        'error',
+        true
+      )
+    }
+  });
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()

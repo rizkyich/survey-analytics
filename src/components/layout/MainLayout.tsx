@@ -9,8 +9,6 @@ import Drawer from '@mui/material/Drawer'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 
-import SnackbarProvider from '../Snackbar/SnackbarProvider';
-
 import NavigationMenu from './NavigationMenu'
 import LogoutButton from './LogoutButton'
 
@@ -85,7 +83,6 @@ const MainLayout = () => {
   }
 
   return (
-    <SnackbarProvider>
       <AuthProvider>
         <RootContainer>
           <AppHeader position="fixed">
@@ -121,7 +118,6 @@ const MainLayout = () => {
           </ContentContainer>
         </RootContainer>
       </AuthProvider>
-    </SnackbarProvider>
   )
 }
 

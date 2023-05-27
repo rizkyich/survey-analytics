@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import { QueryClientProvider, QueryClient } from 'react-query'
 
+
+import SnackbarProvider from './components/Snackbar/SnackbarProvider';
+
 const theme = createTheme()
 
 const queryClient = new QueryClient({
@@ -22,7 +25,9 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <SnackbarProvider>
+          <App />
+        </SnackbarProvider>
       </QueryClientProvider>
     </ThemeProvider>
   </React.StrictMode>
