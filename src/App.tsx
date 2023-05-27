@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+
+import MainLayout from './components/layout/MainLayout'
+import SurveyLayout from './components/layout/SurveyLayout'
+
+import SurveyPage from './pages/SurveyPage'
+import LoginPage from './pages/AuthPage'
+import SurveyAddPage from './pages/SurveyAddPage'
+import SurveyEditPage from './pages/SurveyEditPage'
+import SurveyDetailPage from './pages/SurveyDetailPage'
+import ResponseSurveyPage from './pages/ResponseSurveyPage'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+
+        <Route path="/task-survey" element={<SurveyLayout />}>
+          <Route
+            index
+            path="/task-survey/:surveySlug"
+            element={<ResponseSurveyPage />}
+          />
+        </Route>
+
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<SurveyPage />} />
+          <Route path="survey/:surveyId" element={<SurveyDetailPage />} />
+          <Route path="survey/add" element={<SurveyAddPage />} />
+          <Route path="survey/edit/:surveyId" element={<SurveyEditPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
